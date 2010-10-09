@@ -1,0 +1,8 @@
+What is it?
+The AppleRemote class is a REALbasic class to handle input from the Apple Remote device. It supports both the white and aluminium remotes and it's compatible with Mac OS X 10.4 through 10.6. REALbasic version 2009r5 or later is required.
+
+Where did it come from?
+This class is based on the Cocoa code of Martin Kahr <http://martinkahr.com/source-code/> which is also based on what discussed here: <http://www.cocoadev.com/index.pl?UsingTheAppleRemoteControl>
+
+How do I use this?
+Check out the wiki at http://github.com/maxvalle/AppleRemote/wiki.
