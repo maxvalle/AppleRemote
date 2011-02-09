@@ -598,7 +598,7 @@ End
 #tag EndEvents
 #tag Events ButtonCanvas
 	#tag Event
-		Sub Paint(g As Graphics)
+		Sub Paint(index as Integer, g As Graphics)
 		  
 		  if hold then
 		    g.drawPicture holdPic, 0, 0

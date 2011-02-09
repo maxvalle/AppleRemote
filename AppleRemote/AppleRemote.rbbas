@@ -17,7 +17,7 @@ Protected Module AppleRemote
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
-		Private Soft Declare Function CFDictionaryGetValue Lib "CoreFoundation" (theDict as integer, key as integer) As integer
+		Private Soft Declare Function CFDictionaryGetValue Lib "CoreFoundation" (theDict as integer, key as ptr) As integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
@@ -37,7 +37,7 @@ Protected Module AppleRemote
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
-		Private Soft Declare Sub CFRunLoopAddSource Lib "CoreFoundation" (rl as integer, source as integer, mode as UInt32)
+		Private Soft Declare Sub CFRunLoopAddSource Lib "CoreFoundation" (rl as integer, source as integer, mode as Ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
@@ -45,11 +45,7 @@ Protected Module AppleRemote
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
-		Private Soft Declare Sub CFRunLoopRemoveSource Lib "CoreFoundation" (rl as integer, source as integer, mode as UInt32)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h21
-		Private Soft Declare Function CFSTR Lib "CoreFoundation" Alias "__CFStringMakeConstantString" (cStr as Cstring) As integer
+		Private Soft Declare Sub CFRunLoopRemoveSource Lib "CoreFoundation" (rl as integer, source as integer, mode as Ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
@@ -116,55 +112,9 @@ Protected Module AppleRemote
 		Private Soft Declare Function IOServiceMatching Lib "IOKit" (name as cstring) As integer
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h21
-		Private Function isLeopard() As boolean
-		  
-		  return (OSVersion >= &h1050 and OSVersion < &h1060)
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function isSnowLeopard() As boolean
-		  
-		  return (OSVersion >= &h1060 and OSVersion < &h1070)
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function isTiger() As boolean
-		  
-		  return (OSVersion >= &h1040 and OSVersion < &h1050)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function isTigerOrLater() As boolean
-		  
-		  return (OSVersion >= &h1040)
-		  
-		End Function
-	#tag EndMethod
-
 	#tag DelegateDeclaration, Flags = &h21
 		Private Delegate Function openDelegate(selfp as ptr, flags as UInt32) As integer
 	#tag EndDelegateDeclaration
-
-	#tag Method, Flags = &h21
-		Private Function OSVersion() As integer
-		  
-		  #if targetMacOS
-		    
-		    dim res as Integer
-		    
-		    call System.Gestalt( "sysv", res )
-		    
-		    return res
-		    
-		  #endif
-		End Function
-	#tag EndMethod
 
 	#tag DelegateDeclaration, Flags = &h21
 		Private Delegate Function QueryInterfaceDelegate(thisPointer as Ptr, iid as CFUUIDBytes, ppv as ptr) As integer
@@ -186,13 +136,71 @@ Protected Module AppleRemote
 		Private Delegate Function stopDelegate(selfp as ptr) As integer
 	#tag EndDelegateDeclaration
 
+	#tag Method, Flags = &h21
+		Private Function _CFSTR(inStr as string) As Ptr
+		  
+		  // from MacOSLib
+		  // The use of CFRetain here provides a slick way to convert a REALbasic CFStringRef to a Ptr
+		  soft declare function CFRetain lib "Carbon" (cf as CFStringRef) as Ptr
+		  
+		  return CFRetain(inStr)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function _isLeopard() As boolean
+		  
+		  return (_OSVersion >= &h1050 and _OSVersion < &h1060)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function _isSnowLeopard() As boolean
+		  
+		  return (_OSVersion >= &h1060 and _OSVersion < &h1070)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function _isTiger() As boolean
+		  
+		  return (_OSVersion >= &h1040 and _OSVersion < &h1050)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function _isTigerOrLater() As boolean
+		  
+		  return (_OSVersion >= &h1040)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function _OSVersion() As integer
+		  
+		  #if targetMacOS
+		    
+		    dim res as Integer
+		    
+		    call System.Gestalt( "sysv", res )
+		    
+		    return res
+		    
+		  #endif
+		End Function
+	#tag EndMethod
+
 
 	#tag Note, Name = Info
 		
 		AppleRemote
 		REALbasic class to handle the Apple Remote
 		
-		Copyright (c)2008-2010, Massimo Valle
+		Copyright (c)2008-2011, Massimo Valle
 		All rights reserved.
 		
 		This class is based on the Cocoa code of  Martin Kahr <http://martinkahr.com/source-code/> which is also based on what
@@ -216,7 +224,6 @@ Protected Module AppleRemote
 		DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
 		IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 		OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-		
 	#tag EndNote
 
 
