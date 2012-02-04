@@ -157,6 +157,14 @@ Protected Module AppleRemote
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Function _isLion() As boolean
+		  
+		  return (_OSVersion >= &h1070 and _OSVersion < &h1080)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Function _isSnowLeopard() As boolean
 		  
 		  return (_OSVersion >= &h1060 and _OSVersion < &h1070)
@@ -168,14 +176,6 @@ Protected Module AppleRemote
 		Private Function _isTiger() As boolean
 		  
 		  return (_OSVersion >= &h1040 and _OSVersion < &h1050)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function _isTigerOrLater() As boolean
-		  
-		  return (_OSVersion >= &h1040)
-		  
 		End Function
 	#tag EndMethod
 

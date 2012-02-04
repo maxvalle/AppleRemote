@@ -453,8 +453,8 @@ Protected Class ARController
 		    case kRemoteButtonCentral_Hold
 		      raiseEvent CentralHold
 		      
-		      'case kRemoteControl_Switched
-		      'raiseEvent RemoteControlSwitched
+		    case kRemoteControl_Switched
+		      raiseEvent RemoteControlSwitched
 		      
 		    end select
 		    
@@ -493,7 +493,7 @@ Protected Class ARController
 		        cookieToButtonMapping.value("31_19_18_31_19_18_") = kRemoteButtonMenu_Hold
 		        cookieToButtonMapping.value("35_31_19_18_35_31_19_18_") = kRemoteButtonPlay_Hold
 		        cookieToButtonMapping.value("19_") = kRemoteControl_Switched
-		      elseif _isSnowLeopard then
+		      elseif _isSnowLeopard or _isLion then
 		        cookieToButtonMapping.value("33_31_30_21_20_2_") = kRemoteButtonPlus
 		        cookieToButtonMapping.value("33_32_30_21_20_2_") = kRemoteButtonMinus
 		        cookieToButtonMapping.value("33_22_21_20_2_33_22_21_20_2_") = kRemoteButtonMenu
@@ -507,7 +507,7 @@ Protected Class ARController
 		        cookieToButtonMapping.value("33_21_20_8_2_33_21_20_8_2_") = kRemoteButtonPlay_Alu
 		        cookieToButtonMapping.value("33_21_20_3_2_33_21_20_3_2_") = kRemoteButtonCentral
 		        cookieToButtonMapping.value("33_21_20_11_2_33_21_20_11_2_") = kRemoteButtonCentral_Hold
-		        cookieToButtonMapping.value("19_") = kRemoteControl_Switched
+		        cookieToButtonMapping.value("42_") = kRemoteControl_Switched
 		      end if
 		    end if
 		    
@@ -658,6 +658,10 @@ Protected Class ARController
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
+		Event RemoteControlSwitched()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event TrackLeftHoldDown()
 	#tag EndHook
 
@@ -743,7 +747,7 @@ Protected Class ARController
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		processBacklog As boolean
+		processBacklog As boolean = true
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

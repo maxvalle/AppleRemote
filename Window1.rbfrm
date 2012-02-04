@@ -27,6 +27,7 @@ Begin Window Window1
    Begin PushButton PushButton1
       AutoDeactivate  =   True
       Bold            =   ""
+      ButtonStyle     =   0
       Cancel          =   ""
       Caption         =   "Listen"
       Default         =   ""
@@ -507,6 +508,41 @@ Begin Window Window1
          Width           =   20
       End
    End
+   Begin Label SwitchedLabel
+      AutoDeactivate  =   True
+      Bold            =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   ""
+      Left            =   64
+      LockBottom      =   ""
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   ""
+      LockTop         =   True
+      Multiline       =   ""
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   4
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "SWITCHED"
+      TextAlign       =   1
+      TextColor       =   "&cFF0000"
+      TextFont        =   "System"
+      TextSize        =   0
+      TextUnit        =   0
+      Top             =   273
+      Transparent     =   False
+      Underline       =   ""
+      Visible         =   False
+      Width           =   234
+   End
 End
 #tag EndWindow
 
@@ -598,7 +634,7 @@ End
 #tag EndEvents
 #tag Events ButtonCanvas
 	#tag Event
-		Sub Paint(index as Integer, g As Graphics)
+		Sub Paint(g As Graphics)
 		  
 		  if hold then
 		    g.drawPicture holdPic, 0, 0
@@ -615,7 +651,7 @@ End
 		  for i as integer = 0 to 12
 		    ButtonCanvas(i).visible = false
 		  next
-		  
+		  SwitchedLabel.visible = false
 		End Sub
 	#tag EndEvent
 #tag EndEvents

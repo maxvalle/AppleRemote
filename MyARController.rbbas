@@ -62,6 +62,15 @@ Inherits AppleRemote.ARController
 	#tag EndEvent
 
 	#tag Event
+		Sub RemoteControlSwitched()
+		  Window1.SwitchedLabel.visible = true
+		  Window1.Timer1.period = 90
+		  Window1.Timer1.mode = 1
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub TrackLeftHoldDown()
 		  Window1.hold = true
 		  Window1.ButtonCanvas(4).visible = true
