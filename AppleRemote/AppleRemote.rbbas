@@ -157,17 +157,9 @@ Protected Module AppleRemote
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function _isLion() As boolean
+		Private Function _isSnowLeopardOrLater() As boolean
 		  
-		  return (_OSVersion >= &h1070 and _OSVersion < &h1080)
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function _isSnowLeopard() As boolean
-		  
-		  return (_OSVersion >= &h1060 and _OSVersion < &h1070)
+		  return (_OSVersion >= &h1060)
 		  
 		End Function
 	#tag EndMethod
@@ -200,7 +192,7 @@ Protected Module AppleRemote
 		AppleRemote
 		REALbasic class to handle the Apple Remote
 		
-		Copyright (c)2008-2011, Massimo Valle
+		Copyright (c)2008-2012, Massimo Valle
 		All rights reserved.
 		
 		This class is based on the Cocoa code of  Martin Kahr <http://martinkahr.com/source-code/> which is also based on what

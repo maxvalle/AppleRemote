@@ -493,7 +493,7 @@ Protected Class ARController
 		        cookieToButtonMapping.value("31_19_18_31_19_18_") = kRemoteButtonMenu_Hold
 		        cookieToButtonMapping.value("35_31_19_18_35_31_19_18_") = kRemoteButtonPlay_Hold
 		        cookieToButtonMapping.value("19_") = kRemoteControl_Switched
-		      elseif _isSnowLeopard or _isLion then
+		      elseif _isSnowLeopardOrLater then
 		        cookieToButtonMapping.value("33_31_30_21_20_2_") = kRemoteButtonPlus
 		        cookieToButtonMapping.value("33_32_30_21_20_2_") = kRemoteButtonMinus
 		        cookieToButtonMapping.value("33_22_21_20_2_33_22_21_20_2_") = kRemoteButtonMenu

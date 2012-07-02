@@ -1,6 +1,6 @@
 Type=Desktop
-RBProjectVersion=2011.03
-MinIDEVersion=20110100
+RBProjectVersion=2011.043
+MinIDEVersion=20070100
 Class=App;App.rbbas;&h76BFBB67;&h0;false
 Window=Window1;Window1.rbfrm;&h25A8E5BF;&h0;false
 MenuBar=MenuBar1;MenuBar1.rbmnu;&h7383B38F;&h0;false
@@ -9,6 +9,7 @@ Class=ARController;AppleRemote/ARController.rbbas;&h4B81EE2E;&h3F3C7662;false
 Picture=AppleRemotePic;AppleRemotePic.tiff;&h5933F98C;&h0;false;0;&h0
 Picture=AppleRemoteAlu;AppleRemoteAlu.tiff;&h228BCB22;&h0;false;0;&h0
 Class=MyARController;MyARController.rbbas;&h3B4FD9E0;&h0;false
+BuildSteps=Build Automation;Build Automation.rbbas;&h7BFE38AE;&h0;false
 DefaultWindow=Window1
 AppMenuBar=MenuBar1
 MajorVersion=1
